@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/MainFragment">
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.muhtarkhan.hw.Main.MainFragment"
+        android:label="MainFragment">
+
+        <action
+            android:id="@+id/action_MainFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_LogInFragment"
+            app:destination="@id/LogInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="com.muhtarkhan.hw.Auth.SignUpFragment"
+        android:label="SignUpFragment">
+
+        <action
+            android:id="@+id/action_SignUpFragment_to_SneakerFragment"
+            app:destination="@id/SneakerFragment" />
+        <action
+            android:id="@+id/action_SignUpFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LogInFragment"
+        android:name="com.muhtarkhan.hw.Auth.LogInFragment"
+        android:label="LogInFragment">
+
+        <action
+            android:id="@+id/action_LogInFragment_to_SneakerFragment"
+            app:destination="@id/SneakerFragment" />
+        <action
+            android:id="@+id/action_LogInFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SneakerFragment"
+        android:name="com.muhtarkhan.hw.Sneaker.SneakerFragment"
+        android:label="SneakerFragment"/>
+
+
+</navigation>
