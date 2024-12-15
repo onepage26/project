@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.navigation.safeargs)
+    alias(libs.plugins.google.ksp)
 }
 
 android {
@@ -73,4 +74,8 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.navigation.ui)
     implementation(libs.navigation.fragment)
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.room.runtime)
+
+    ksp(libs.androidx.room.compiler)
 }

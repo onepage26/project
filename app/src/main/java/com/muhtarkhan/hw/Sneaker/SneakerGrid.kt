@@ -19,58 +19,77 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.muhtarkhan.hw.BottomNavBar.BottomNavBar
+import com.muhtarkhan.hw.Cart.CartEvent
+import com.muhtarkhan.hw.Cart.CartState
 import com.muhtarkhan.hw.R
+import com.muhtarkhan.hw.Sneaker.ProductSource.sneakers
 
 
 data class Sneaker(
+    val id: Int,
     val name: String,
     val description: String,
     val price: String,
     val imageRes: Int
 )
 
-@Composable
-fun SneakerGrid() {
+object ProductSource {
     val sneakers = listOf(
-        Sneaker("Dolce & Gabbana", "Кроссовки с принтом", "$1261", R.drawable.img_1),
-        Sneaker("Off-White", "Кроссовки Off-Court 3.0", "$551", R.drawable.img_1),
-        Sneaker("Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_1),
-        Sneaker("Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_1),
-        Sneaker("Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_1),
-        Sneaker("Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_1),
+        Sneaker(1,"Dolce & Gabbana", "Кроссовки с принтом", "$1261", R.drawable.img_2),
+        Sneaker(2, "Off-White", "Кроссовки Off-Court 3.0", "$551", R.drawable.img_3),
+        Sneaker(3,"Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_1),
+        Sneaker(4,"Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_4),
+        Sneaker(5,"Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_2),
+        Sneaker(6,"Jordan", "Кроссовки с принтом", "$1251", R.drawable.img_3),
     )
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth().safeDrawingPadding()
-                .padding(top = 5.dp, bottom = 15.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "Hello SneakerHead",
-                fontSize = 22.sp,
-                lineHeight = 22.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-        }
-
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize()
-            .safeDrawingPadding()
-    ) {
-
-        items(sneakers) { sneaker ->
-            SneakerCard(sneaker)
-        }
-    }
-    }
 }
 
 @Composable
-fun SneakerCard(sneaker: Sneaker) {
+fun SneakerGrid(
+    onCatalog: () -> Unit, onCart: () -> Unit, onProfile: () -> Unit, onEvent: (CartEvent) -> Unit
+) {
+
+    Scaffold(
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .safeDrawingPadding()
+                    .padding(top = 5.dp, bottom = 15.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Hello SneakerHead",
+                    fontSize = 22.sp,
+                    lineHeight = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+            }
+        },
+        content = { paddingValues ->
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .safeDrawingPadding()
+                    .background(Color(0xFF6F6F6))
+            ) {
+                items(sneakers) { sneaker ->
+                    SneakerCard(sneaker, onEvent)
+                }
+            }
+        },
+        bottomBar = {
+            BottomNavBar(onCatalog, onCart, onProfile)
+        }
+    )
+}
+
+@Composable
+fun SneakerCard(sneaker: Sneaker, onEvent: (CartEvent) -> Unit) {
 
     Column(
         modifier = Modifier
@@ -79,24 +98,24 @@ fun SneakerCard(sneaker: Sneaker) {
             .height(350.dp)
             .width(174.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.White),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color.White)
     ) {
         Image(
             painter = painterResource(id = sneaker.imageRes),
             contentDescription = sneaker.name,
             modifier = Modifier
                 .size(166.dp)
+                .align(Alignment.CenterHorizontally)
                 .padding(8.dp),
             contentScale = ContentScale.Crop
         )
 
         Text(text = sneaker.name, fontWeight = FontWeight.Bold, modifier = Modifier.padding(4.dp))
-        Text(text = sneaker.description, fontSize = 12.sp, modifier = Modifier.padding(4.dp))
+        Text(text = sneaker.description, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(4.dp))
         Text(text = sneaker.price, fontWeight = FontWeight.Bold, modifier = Modifier.padding(4.dp))
 
         Button(
-            onClick = {  },
+            onClick = { onEvent(CartEvent.AddToCart(sneaker.id)) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),

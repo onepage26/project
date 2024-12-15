@@ -1,4 +1,4 @@
-package com.muhtarkhan.hw.Sneaker
+package com.muhtarkhan.hw.Cart
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,10 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.muhtarkhan.hw.Cart.CartViewModel
-import com.muhtarkhan.hw.Cart.RoomCartProvider
 import com.muhtarkhan.hw.Cart.models.CartViewModelFactory
 import com.muhtarkhan.hw.R
 
-class SneakerFragment: Fragment() {
+class CartFragment: Fragment() {
 
     private val viewModel: CartViewModel by viewModels {
         CartViewModelFactory(RoomCartProvider(requireContext()))
@@ -26,9 +24,10 @@ class SneakerFragment: Fragment() {
     ): View = ComposeView(requireContext()).apply {
         val navController = findNavController()
         setContent {
-            SneakerGrid(onCatalog = {navController.navigate(R.id.action_SneakerFragment_to_SneakerFragment)},
-                onCart = {navController.navigate(R.id.action_SneakerFragment_to_CartFragment)},
-                onProfile = {navController.navigate(R.id.action_SneakerFragment_to_ProfileFragment)},
+            CartScreen( onCatalog = {navController.navigate(R.id.action_CartFragment_to_SneakerFragment)},
+                onCart = {navController.navigate(R.id.action_CartFragment_to_CartFragment)},
+                onProfile = {navController.navigate(R.id.action_CartFragment_to_ProfileFragment)},
+                state = viewModel.state,
                 onEvent = viewModel::dispatch
             )
         }

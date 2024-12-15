@@ -1,8 +1,8 @@
 package com.muhtarkhan.hw.Main
 
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,13 +13,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 
 @Composable
 fun WelcomeScreen (navigateToSignUp: () -> Unit, navigateToLogin: () -> Unit) {
@@ -44,9 +44,9 @@ fun WelcomeScreen (navigateToSignUp: () -> Unit, navigateToLogin: () -> Unit) {
         Button(
             modifier = Modifier.padding(bottom = 8.dp)
                 .fillMaxWidth()
-                .height(72.dp),
+                .height(54.dp),
             onClick = { navigateToSignUp() },
-            shape = RoundedCornerShape(12.dp),
+            shape = RoundedCornerShape(32.dp),
             colors = ButtonDefaults.buttonColors().copy(
                 containerColor = Color(0xFF08080A),
                 contentColor = Color(0xFFFFFFFF)
@@ -63,9 +63,9 @@ fun WelcomeScreen (navigateToSignUp: () -> Unit, navigateToLogin: () -> Unit) {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(72.dp),
+                .height(54.dp),
             onClick = { navigateToLogin()},
-            shape = RoundedCornerShape(12.dp),
+            shape = RoundedCornerShape(32.dp),
             colors = ButtonDefaults.buttonColors().copy(
                 containerColor = Color(0xFFFFFF),
                 contentColor = Color(0xFF08080A)

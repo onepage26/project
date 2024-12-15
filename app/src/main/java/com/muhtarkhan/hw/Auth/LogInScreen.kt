@@ -105,14 +105,14 @@ fun LogInScreen(navigateToSneaker: () -> Unit, onIcon: () -> Unit) {
         Button(
             onClick = { navigateToSneaker()},
             modifier = Modifier.fillMaxWidth()
-                .height(72.dp)
+                .height(54.dp)
                 .align(Alignment.End),
             colors = ButtonDefaults.buttonColors().copy(
                 containerColor = Color(0xFF08080A),
                 contentColor = Color(0xFFFFFFFF)
             )
         ) {
-            Text("Sign Up")
+            Text("Sign Up", fontSize = 17.sp, fontWeight = FontWeight(600), lineHeight = 22.sp)
         }
     }
 }

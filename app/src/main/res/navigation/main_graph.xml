@@ -46,7 +46,47 @@
     <fragment
         android:id="@+id/SneakerFragment"
         android:name="com.muhtarkhan.hw.Sneaker.SneakerFragment"
-        android:label="SneakerFragment"/>
+        android:label="SneakerFragment">
+        <action
+            android:id="@+id/action_SneakerFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+        <action
+            android:id="@+id/action_SneakerFragment_to_CartFragment"
+            app:destination="@id/CartFragment" />
+        <action
+            android:id="@+id/action_SneakerFragment_to_SneakerFragment"
+            app:destination="@id/SneakerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CartFragment"
+        android:name="com.muhtarkhan.hw.Cart.CartFragment"
+        android:label="CartFragment">
+        <action
+            android:id="@+id/action_CartFragment_to_SneakerFragment"
+            app:destination="@id/SneakerFragment" />
+        <action
+            android:id="@+id/action_CartFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+        <action
+            android:id="@+id/action_CartFragment_to_CartFragment"
+            app:destination="@id/CartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.muhtarkhan.hw.Profile.ProfileFragment"
+        android:label="ProfileFragment">
+        <action
+            android:id="@+id/action_ProfileFragment_to_SneakerFragment"
+            app:destination="@id/SneakerFragment" />
+        <action
+            android:id="@+id/action_ProfileFragment_to_CartFragment"
+            app:destination="@id/CartFragment" />
+        <action
+            android:id="@+id/action_ProfileFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
 
 
 </navigation>
